@@ -1,0 +1,77 @@
+#####################################################################################################
+# Azerothcore Module:     TimeIsTime
+# Author:                 Dunjeon
+# Contributing Author(s): lasyan3, vratam @ RegWorks
+# Version:                20250608 (patched)
+# License:                GNU Affero General Public License v3.0
+#####################################################################################################
+[worldserver]
+
+# Announce
+#####################################################################################################
+# Announce  TimeIsTime
+# Settings: 0 = off, 1 = on
+# Default:  1 
+# Example:  TimeIsTime.Announce = 1 
+#####################################################################################################
+TimeIsTime.Announce = 1
+
+# Enable
+#####################################################################################################
+# Enable TimeIsTime
+# Settings: 0 = off, 1 = on
+# Default:  1
+# Example:  TimeIsTime.Enable = 1 
+#####################################################################################################
+TimeIsTime.Enable = 1
+
+# SpeedRate
+#####################################################################################################
+# Adjust the number of game days per real day by altering the Realm Timer
+# Settings: 60 is 1 second (Real Time) = 1 minute (Realm Timer)
+#           
+#           60.0  = 1 Game Day every 24   minutes
+#           30.0  = 1 Game Day every 48   minutes         
+#           15.0  = 1 Game Day every 96   minutes or 1.6  Hours
+#           7.5   = 1 Game Day every 192  minutes or 3.2  Hours
+#           3.75  = 1 Game Day every 384  minutes or 6.4  Hours        
+#           1.875 = 1 Game Day every 768  minutes or 12.8 Hours
+#           1.0   = 1 Game Day every 1440 minutes or 24.0 Hours 
+# Valid range: 0.01 - 1440.0 (values outside are clamped, a warning is written to the server log)
+# Default:  1.0 (Blizzlike)
+# Example:  TimeIsTime.SpeedRate = 1.0
+#####################################################################################################
+TimeIsTime.SpeedRate = 1.0
+
+# ContinuousClock
+#####################################################################################################
+# 1 = The game clock is calculated from the real wall clock, so it is identical for every player and
+#     bot and does NOT change when the server restarts (day/night cycle stays consistent).
+#     SpeedRate = 1.0 equals the server local time (Blizzlike).
+# 0 = Legacy behaviour: the clock is based on the server start time, so the time of day jumps to a
+#     different point after every restart when SpeedRate is not 1.0.
+# Not used when TimeStart > 0.
+# Default:  1
+# Example:  TimeIsTime.ContinuousClock = 1
+#####################################################################################################
+TimeIsTime.ContinuousClock = 1
+
+# TimeStart and HourOffset:
+#####################################################################################################
+# Start (client side) game clock at chosen Epoch (Unix) time at the same time each login
+# Default:  0  (Local Time)
+# Example:  Based on the settings below, the GMT TimeStart and HourOffset would be:
+#           TimeIsTime.TimeStart = 1213938927   (= Sunrise below)
+#           TimeIsTime.HourOffset = 5
+#           City: Chicago, IL USA
+#           Summer Solstice Date   :: 06-20-2008
+#           Sunrise  = 05:15:27    :: 1213938927
+#           Sunset   = 20:29:01    :: 1213993741
+#           Midday   = 12:00:00    :: 1213963200
+#           Midnight = 24:00:00    :: 1213920000
+# HourOffset: shifts the clock by the given number of hours (decimals and negatives allowed, -24 .. 24).
+#             Applied with TimeStart and with ContinuousClock = 1. Not applied when ContinuousClock = 0
+#             without TimeStart (legacy behaviour).
+#####################################################################################################
+TimeIsTime.TimeStart = 0
+TimeIsTime.HourOffset = 0.0
